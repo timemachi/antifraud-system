@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+  redis:
+    image: redis:latest
+    restart: always
+
+  postgres:
+
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD : 123456
+
+  app:
+
+    image: anti-fraud:v1
+    build: .
+    ports:
+      - "28888:28888"
+    depends_on:
+      - redis
+      - postgres
+
+
+
+
